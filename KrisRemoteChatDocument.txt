@@ -1,0 +1,57 @@
+
+Great job
+
+Ok, now time to get pyxel
+
+Woot
+
+:D
+
+ok
+
+almost there
+
+
+ARE YOU READY??
+
+:D
+
+haha
+
+ok, so now I'm going to set you up like I did Luis
+
+Watch closely
+
+We want to keep our original code, have a separate place for code we're working on, and keep our assets organized
+
+Now you have a file you can play around with, and if anything breaks you can grab another copy of 02 jump_game
+
+Make sense?
+
+Perfect :)
+
+Did you take note of where I put your project folder? It's in your documents
+
+See now?
+
+Great
+
+Just cleaning up after myself
+
+Do you have a code editor?
+
+You have IDLE installed on your computer, but you can find better editors
+
+If you double click on the file, it launches your game
+
+To edit it, you want to right click it, then go down to "Edit With IDLE"
+
+It's an extremely basic editor, but should work for now
+
+We can get you something much cooler soon
+
+When you make a change and want to see it in the game, go to the menu bar and click "Run->Run Module"
+
+When you're done, just exit the game, make another change, then run the module again!
+
+Going to save this file in your project folder so you can look back at it if you need to see my random one sided conversation :P
