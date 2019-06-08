@@ -4,15 +4,15 @@ from character import Character
 
 class Enemy(Character):
     def __init__(self, world, x, y, image):
-        Character.__init__(self, world, x, y, 12, 12)
-        self.world = world
+        super().__init__(world, x, y, 12, 12)
         self.world.enemy_list.append(self)
         self.health = 10
         self.image = image
 
     def update(self):
         #self.update_random()
-        self.move_towards(self.world.player.x, self.world.player.y)
+        pass
+    def interact_with_world(self):
         self.check_boundary()
         if self.is_touching(self.world.player):
             self.world.player.x = 250

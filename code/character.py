@@ -9,7 +9,6 @@ class Character(pygame.Rect):
         self.step = 1
         self.health = 10
         self.font = pygame.font.SysFont("None", 20)
-
         self.health_score = self.font.render("Health : " + str(self.health),
                             True, common.blue)
 

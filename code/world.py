@@ -5,7 +5,7 @@ from player import Player
 from npc import NonPlayer
 from background import Background
 from door import Door
-from enemy import Enemy
+from player_attacker_enemy import PlayerAttacker
 
 class World:
     def __init__(self):
@@ -29,7 +29,7 @@ class World:
         self.player.Interacting(self.npc)
         if self.door.check_door_touching(self.player):
             for enemy_number in range(1, 3):
-                Enemy(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
+                PlayerAttacker(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
 
 
         #self.door.check_door_touching(self.player)
