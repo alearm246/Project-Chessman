@@ -6,6 +6,7 @@ from npc import NonPlayer
 from background import Background
 from door import Door
 from player_attacker_enemy import PlayerAttacker
+from protectable_item import ProtectableItem
 
 class World:
     def __init__(self):
@@ -17,6 +18,7 @@ class World:
         self.door = Door(self,self.background, 0, 150)
         self.door_2 = Door(self,self.background,0,50)
         self.npc = None
+        self.protectable_item = ProtectableItem(self,150,150, 'assets/cake.png')
         window_size = SCREEN_WIDTH, SCREEN_HEIGHT = 320,240
         self.screen = pygame.display.set_mode(window_size,RESIZABLE)
         self.surface = pygame.Surface(self.screen.get_size())
@@ -43,6 +45,7 @@ class World:
         self.surface.fill((0, 0, 0)) # clear screen (Paint it all white)
         self.background.draw(self.surface)
         self.player.draw(self.surface)
+        self.protectable_item.draw(self.surface)
         if self.npc != None:
             self.npc.draw(self.surface)
         for this_enemy in self.enemy_list:
