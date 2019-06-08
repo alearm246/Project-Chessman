@@ -98,3 +98,13 @@ class Character(pygame.Rect):
     def kill(self, other_character):
         if self.is_touching(other_character):
             self.destroy()
+
+    def move_towards(self, target_x, target_y):
+        if self.x < target_x:
+            self.x += 2
+        elif self.x > target_x:
+            self.x-= 2
+        if self.y > target_y:
+            self.y -= 2
+        elif self.y < target_y:
+            self.y += 2

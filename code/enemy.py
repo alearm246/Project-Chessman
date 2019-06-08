@@ -11,7 +11,8 @@ class Enemy(Character):
         self.image = image
 
     def update(self):
-        self.update_random()
+        #self.update_random()
+        self.move_towards(self.world.player.x, self.world.player.y)
         self.check_boundary()
         if self.is_touching(self.world.player):
             self.world.player.x = 250
