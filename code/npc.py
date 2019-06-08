@@ -1,17 +1,19 @@
+import pygame
+import common
+from character import Character
+
 class NonPlayer(Character):
     def  __init__(self, world, image):
-        Character.__init__(self, world)
+        Character.__init__(self, world, 100, 100, 32, 32)
         self.world = world
-        self.x = 100
-        self.y = 100
-        self.width = 32
-        self.height = 32
         self.display_text = ""
         self.image = image
+        self.text = pygame.font.SysFont("None", 20).render("hello there", True, common.red)
+
     def draw(self, surface):
-        surface.blit(self.image, (self.x, self.y))
+        self.world.surface.blit(self.image, (self.x, self.y))
         if self.display_text != '':
-            surface.blit(text, (self.x, self.y - 10))
+            self.world.surface.blit(self.text, (self.x, self.y - 10))
 
         pygame.display.flip()
 

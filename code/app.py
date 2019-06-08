@@ -1,3 +1,8 @@
+import pygame
+from pygame.locals import *
+
+from world import World
+
 class App:
     def __init__(self):
         self.width = 160

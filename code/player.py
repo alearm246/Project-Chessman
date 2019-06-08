@@ -1,3 +1,7 @@
+import pygame
+from character import Character
+from sword import Sword
+
 class Player(Character):
     def __init__(self, world, x, y, width, height):
         super().__init__(world, x, y, width, height)

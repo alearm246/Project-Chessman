@@ -1,11 +1,17 @@
+import pygame
+import common
+import random
+
 class Character(pygame.Rect):
     def __init__(self, world, x, y, width, height):
         super().__init__(x, y, width, height)
         self.world = world
         self.step = 1
         self.health = 10
-        self.health_score = font.render("Health : " + str(self.health), True, blue)
-        #self.visible = True
+        self.font = pygame.font.SysFont("None", 20)
+
+        self.health_score = self.font.render("Health : " + str(self.health),
+                            True, common.blue)
 
     def update_random(self):
         random_number_y = random.random() # decimal number between 0 and 1
@@ -70,14 +76,14 @@ class Character(pygame.Rect):
              other_character.display_text = " "
 
     def draw_health(self, x, y):
-        surface.blit(self.health_score, (x, y))
+        self.world.surface.blit(self.health_score, (x, y))
 
     def lives_removed(self, other_character):
         if other_character == None:
             return
         if self.is_touching(other_character):
             self.health -= 1
-            self.health_score = font.render("Health : " + str(self.health), True, blue)
+            self.health_score = self.font.render("Health : " + str(self.health), True, blue)
         if self.health < 1:
             self.health = 1
             self.died()

@@ -1,3 +1,5 @@
+from weapon import Weapon
+
 class Sword(Weapon):
     def __init__(self, name, damage, image_filename, x, y):
         Weapon.__init__(self, name, damage, image_filename, x, y)
@@ -6,4 +8,5 @@ class Sword(Weapon):
         pass
 
     def draw(self, surface):
-        surface.blit(, )
+        pass
+        #surface.blit(, )

@@ -1,3 +1,5 @@
+import pygame
+
 class Door():
     def __init__(self, world, background, x, y):
         self.world = world

@@ -1,13 +1,12 @@
+import pygame
+from character import Character
+
+
 class Enemy(Character):
     def __init__(self, world, x, y, image):
-        Character.__init__(self, world)
+        Character.__init__(self, world, x, y, 12, 12)
         self.world = world
         self.world.enemy_list.append(self)
-        self.x = x
-        self.y = y
-        self.width = 12
-        self.height = 12
-        self.color = red
         self.health = 10
         self.image = image
 
