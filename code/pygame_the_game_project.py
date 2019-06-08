@@ -29,13 +29,10 @@ player_text = font.render("player", True, green)
 enemy_text = font.render("Enemy", True, red)
 #healthscore = font.render("Health : " + str(Health), True, black)
 
-class Character:
-    def __init__(self, world):
+class Character(pygame.Rect):
+    def __init__(self, world, x, y, width, height):
+        super().__init__(x, y, width, height)
         self.world = world
-        self.x = 0
-        self.y = 0
-        self.width = 7
-        self.height = 10
         self.step = 1
         self.health = 10
         self.health_score = font.render("Health : " + str(self.health), True, blue)
@@ -78,16 +75,20 @@ class Character:
         self_top_Y = self.y
         self_bottom_Y = self.height + self.y
         self_right_X = self.width + self.x
+        return self.is_touching_rectangle(self_left_X, self_bottom_Y,
+                                     self_top_Y, self_right_X, other_character)
+
+    def is_touching_rectangle(self,left, bottom, top, right, other_character):
         other_left_x = other_character.x
         other_top_Y = other_character.y
         other_bottom_Y = other_character.height + other_character.y
         other_right_X = other_character.width + other_character.x
         if (
 
-          self_right_X >= other_left_x
-          and self_left_X <= other_right_X
-          and self_bottom_Y >= other_top_Y
-          and self_top_Y <= other_bottom_Y
+          right >= other_left_x
+          and left <= other_right_X
+          and bottom >= other_top_Y
+          and top <= other_bottom_Y
         ):
           return True
         else:
@@ -124,16 +125,12 @@ class Character:
             self.destroy()
 
 class Player(Character):
-    def __init__(self, world):
-        Character.__init__(self, world)
+    def __init__(self, world, x, y, width, height):
+        super().__init__(world, x, y, width, height)
         self.world = world
-        self.x = 225
-        self.y = 85
-        self.color = green
-        self.width = 16 # exact image dimensions (otherwise it gets cut off)
-        self.height = 16 # exact image dimensions (otherwise it gets cut off)
         self.health = 10
         self.image = pygame.image.load('assets/New Piskel clone.png')
+        self.my_sword = Sword('Excalibur', 10,'assets/Small_Sword_icon.png', self.x + 10, self.y )
 
     def update(self): # moves the Player
         keys = pygame.key.get_pressed()
@@ -145,12 +142,37 @@ class Player(Character):
             self.x -= 2
         if keys[pygame.K_d]:
             self.x += 2
+
+        if keys[pygame.K_n]:
+            self.attack()
+
         self.check_boundary()
+
+
+    def attack(self):
+        self_right_side = self.x + self.width + 25
+        self_left_side = self.x + self.width
+        self_top_side = self.y
+        self_bottom_side = self.height + self.y
+        pygame.transform.rotate()
+
+        for enemy in self.world.enemy_list:
+            if self.is_touching_rectangle(right=self_right_side,
+                                  left=self_left_side,
+                                  top=self_top_side,
+                                  bottom=self_bottom_side,
+                                  other_character = enemy):
+                                  enemy.died()
+
+
+
+
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
         self.draw_health(0, 0)
         pygame.display.flip()
+
         #self.CheckBoundary()
 
 class NonPlayer(Character):
@@ -178,7 +200,7 @@ class Enemy(Character):
     def __init__(self, world, x, y, image):
         Character.__init__(self, world)
         self.world = world
-        self.world.enemy_list.append(self, self.enemy, self.enemy2)
+        self.world.enemy_list.append(self)
         self.x = x
         self.y = y
         self.width = 12
@@ -190,7 +212,9 @@ class Enemy(Character):
     def update(self):
         self.update_random()
         self.check_boundary()
-
+        if self.is_touching(self.world.player):
+            self.world.player.x = 250
+            self.world.player.y = 200
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
         self.draw_health(430, 0)
@@ -256,39 +280,57 @@ class Door():
             self.world.change_location(pygame.image.load('assets/pixel_500x330.png'))
             self.world.player.x = 225
             self.world.player.y = 85
+            return True
+        else:
+            return False
+
+class Weapon(pygame.Rect):
+    def __init__(self,name, damage, image_filename, x, y):
+        self.image_surface = pygame.image.load(image_filename)
+        super().__init__(x, y, self.image.get_width(), self.image.get_height())
+        #print(self.imafe.get_width())
+    #self.durability = durability
+        self.name = name
+        self.damage = damage
+
+    def draw(self):
+        surface.blit()
+
+class Sword(Weapon):
+    def __init__(self, name, damage, image_filename, x, y):
+        Weapon.__init__(self, name, damage, image_filename, x, y)
+        #print("CREATE", self.name)
+    def update():
+        pass
+
+    def draw(self, surface):
+        surface.blit(, )
+
+
+
 
 class World:
     def __init__(self):
         self.enemy_list = []
         self.width = 160
         self.height = 100
-        self.player = Player(self)
+        self.player = Player(self, 225, 85, 15, 15)
         self.background = Background(self, pygame.image.load('assets/background_image.png'))
         self.door = Door(self,self.background, 0, 150)
         self.door_2 = Door(self,self.background,0,50)
 
-        '''
-        self.enemy = None
-        self.enemy2 = None
-        '''
         self.npc = None
-
-
-
 
 
     def update(self):
         self.player.update()
-        '''
-        self.player.is_touching(self.enemy)
-        self.player.lives_removed(self.enemy)
-        self.player.kill(self.enemy)
-        self.player.is_touching(self.enemy2)
-        self.player.lives_removed(self.enemy2)
-        '''
         self.player.Interacting(self.npc)
-        self.door.check_door_touching(self.player)
-        self.door.check_door_touching(self.player)
+        if self.door.check_door_touching(self.player):
+            for enemy_number in range(1, 3):
+                Enemy(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
+
+
+        #self.door.check_door_touching(self.player)
         self.player.Interacting(self.npc)
         for this_enemy in self.enemy_list:
             this_enemy.update()
@@ -313,6 +355,8 @@ class World:
     def change_location(self, background_image):
         self.background.change_image(background_image)
         self.npc = NonPlayer(self, pygame.image.load('assets/npc_32x32.png'))
+
+
 
 class App:
     def __init__(self):

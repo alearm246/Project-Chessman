@@ -4,6 +4,7 @@ import time
 import random
 from pygame.locals import *
 
+
 FPS = 30
 pygame.init()
 fpsClock=pygame.time.Clock()
