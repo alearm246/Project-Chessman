@@ -7,6 +7,7 @@ from background import Background
 from door import Door
 from player_attacker_enemy import PlayerAttacker
 from protectable_item import ProtectableItem
+from item_attacker_enemy import itemAttacker
 
 class World:
     def __init__(self, app):
@@ -33,7 +34,7 @@ class World:
         if self.door.check_door_touching(self.player):
             for enemy_number in range(1, 3):
                 PlayerAttacker(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
-                PlayerAttacker(self, 10, 10,  pygame.image.load('assets/bad_face_12x12.png'))
+                itemAttacker(self, 10, 10,  pygame.image.load('assets/bad_face_12x12.png'))
 
 
 
