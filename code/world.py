@@ -15,8 +15,8 @@ class World:
     def __init__(self, app):
         self.app = app
         self.enemy_list = []
-        self.width = 160
-        self.height = 100
+        self.width = 640
+        self.height = 480
         self.player = Player(self, 225, 85, 15, 15)
         self.background = Background(self, pygame.image.load('assets/background_image.png'))
         self.door = Door(self,self.background, 0, 150)
@@ -36,8 +36,8 @@ class World:
         self.player.Interacting(self.npc)
         if self.door.check_door_touching(self.player):
             for enemy_number in range(0,1):
-                PlayerAttacker(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
-                itemAttacker(self, 10, 10,  pygame.image.load('assets/bad_face_12x12.png'))
+                PlayerAttacker(self, 50, 50,  pygame.image.load('assets/demon1.png'))
+                itemAttacker(self, 10, 10,  pygame.image.load('assets/demon1.png'))
 
 
 
