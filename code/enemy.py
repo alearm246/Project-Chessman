@@ -12,7 +12,7 @@ class Enemy(Character):
     def update(self):
         #self.update_random()
         pass
-    def interact_with_world(self, other):
+    def interact_with_world(self):
         self.check_boundary()
         if self.is_touching(self.world.player):
             self.world.player.x = 250
