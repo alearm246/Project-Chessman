@@ -9,7 +9,8 @@ from player_attacker_enemy import PlayerAttacker
 from protectable_item import ProtectableItem
 
 class World:
-    def __init__(self):
+    def __init__(self, app):
+        self.app = app
         self.enemy_list = []
         self.width = 160
         self.height = 100
@@ -18,7 +19,7 @@ class World:
         self.door = Door(self,self.background, 0, 150)
         self.door_2 = Door(self,self.background,0,50)
         self.npc = None
-        self.protectable_item = ProtectableItem(self,150,150, 'assets/cake.png')
+        self.protectable_item = ProtectableItem(self,app,150,150, 'assets/cake.png')
         window_size = SCREEN_WIDTH, SCREEN_HEIGHT = 320,240
         self.screen = pygame.display.set_mode(window_size,RESIZABLE)
         self.surface = pygame.Surface(self.screen.get_size())
@@ -32,6 +33,8 @@ class World:
         if self.door.check_door_touching(self.player):
             for enemy_number in range(1, 3):
                 PlayerAttacker(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
+                PlayerAttacker(self, 10, 10,  pygame.image.load('assets/bad_face_12x12.png'))
+
 
 
         #self.door.check_door_touching(self.player)

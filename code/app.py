@@ -1,13 +1,13 @@
 import pygame
+import sys
 from pygame.locals import *
-
 from world import World
 
 class App:
     def __init__(self):
         self.width = 160
         self.height = 120
-        self.world = World()
+        self.world = World(self)
         # Load images here after initializing, but before running
         ### PYGAME TODO:
         ### - need to figure out how pygame load images, and put loading here...
@@ -29,3 +29,6 @@ class App:
 
     def draw(self):
         self.world.draw()
+
+    def lose_game(self):
+        print("loose game")

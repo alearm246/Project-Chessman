@@ -12,11 +12,16 @@ class Enemy(Character):
     def update(self):
         #self.update_random()
         pass
-    def interact_with_world(self):
+    def interact_with_world(self, other):
         self.check_boundary()
         if self.is_touching(self.world.player):
             self.world.player.x = 250
             self.world.player.y = 200
+        if self.colliderect(self.world.protectable_item):
+            self.world.protectable_item.is_attacked()
+
+
+
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
         self.draw_health(430, 0)

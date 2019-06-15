@@ -6,4 +6,4 @@ class PlayerAttacker(Enemy):
 
     def update(self):
         self.move_towards(self.world.player.x, self.world.player.y)
-        self.interact_with_world()
+        self.interact_with_world(self.world.player)
