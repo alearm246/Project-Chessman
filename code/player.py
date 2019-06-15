@@ -32,7 +32,6 @@ class Player(Character):
         self_left_side = self.x + self.width
         self_top_side = self.y
         self_bottom_side = self.height + self.y
-        pygame.transform.rotate()
 
         for enemy in self.world.enemy_list:
             if self.is_touching_rectangle(right=self_right_side,
@@ -50,5 +49,3 @@ class Player(Character):
         surface.blit(self.image, (self.x, self.y))
         self.draw_health(0, 0)
         pygame.display.flip()
-
-        #self.CheckBou

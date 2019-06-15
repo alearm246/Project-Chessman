@@ -20,6 +20,13 @@ class Enemy(Character):
         if self.colliderect(self.world.protectable_item):
             self.world.protectable_item.is_attacked()
 
+    def died(self):
+        super().died()
+        self.world.score_display.score += 1
+        print("health")
+
+
+
 
 
     def draw(self, surface):

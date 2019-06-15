@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame.locals import *
 
 from player import Player
@@ -8,6 +9,7 @@ from door import Door
 from player_attacker_enemy import PlayerAttacker
 from protectable_item import ProtectableItem
 from item_attacker_enemy import itemAttacker
+from score_system import ScoreDisplay
 
 class World:
     def __init__(self, app):
@@ -21,6 +23,7 @@ class World:
         self.door_2 = Door(self,self.background,0,50)
         self.npc = None
         self.protectable_item = ProtectableItem(self,app,150,150, 'assets/cake.png')
+        self.score_display = ScoreDisplay(self)
         window_size = SCREEN_WIDTH, SCREEN_HEIGHT = 320,240
         self.screen = pygame.display.set_mode(window_size,RESIZABLE)
         self.surface = pygame.Surface(self.screen.get_size())
@@ -32,7 +35,7 @@ class World:
         self.player.update()
         self.player.Interacting(self.npc)
         if self.door.check_door_touching(self.player):
-            for enemy_number in range(1, 3):
+            for enemy_number in range(0,1):
                 PlayerAttacker(self, 50, 50,  pygame.image.load('assets/bad_face_12x12.png'))
                 itemAttacker(self, 10, 10,  pygame.image.load('assets/bad_face_12x12.png'))
 
@@ -50,6 +53,7 @@ class World:
         self.background.draw(self.surface)
         self.player.draw(self.surface)
         self.protectable_item.draw(self.surface)
+        self.score_display.draw()
         if self.npc != None:
             self.npc.draw(self.surface)
         for this_enemy in self.enemy_list:
