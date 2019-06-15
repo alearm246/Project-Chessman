@@ -7,7 +7,7 @@ class Player(Character):
         super().__init__(world, x, y, width, height)
         self.world = world
         self.health = 10
-        self.image = pygame.image.load('assets/New Piskel clone.png')
+        self.image = pygame.image.load('assets/chessman-knight.png')
         self.my_sword = Sword('Excalibur', 10,'assets/Small_Sword_icon.png', self.x + 10, self.y )
 
     def update(self): # moves the Player
