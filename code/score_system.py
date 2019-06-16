@@ -10,7 +10,8 @@ class ScoreDisplay:
 
     def draw(self):
         font_surface = self.font.render("score: " + str(self.score), True, common.purple)
-        self.world.surface.blit(font_surface,(self.world.width/2,0))
+        self.world.surface.blit(font_surface,(100,100))
+        pygame.display.flip()
 
 
     def increment(self):

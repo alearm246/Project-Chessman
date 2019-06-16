@@ -1,7 +1,7 @@
 import pygame
 import random
-from pygame.locals import *
 
+from pygame.locals import *
 from player import Player
 from npc import NonPlayer
 from background import Background
