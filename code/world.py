@@ -12,7 +12,8 @@ from item_attacker_enemy import itemAttacker
 from score_system import ScoreDisplay
 
 class World:
-    def __init__(self, app):
+    def __init__(self, app, EnemyWave):
+        self.enemy_wave = enemy_wave
         self.app = app
         self.enemy_list = []
         self.width = 640
