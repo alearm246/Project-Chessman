@@ -88,15 +88,7 @@ class Character(pygame.Rect):
             self.died()
 
     def died(self):
-        self.x = 225
-        self.y = 85
-
-    def destroy(self):
         self = None
-
-    def kill(self, other_character):
-        if self.is_touching(other_character):
-            self.destroy()
 
     def move_towards(self, target_x, target_y):
         if self.x < target_x:

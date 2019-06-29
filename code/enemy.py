@@ -3,9 +3,10 @@ from character import Character
 
 
 class Enemy(Character):
-    def __init__(self, world, x, y, image):
+    def __init__(self, world, enemy_wave, x, y, image):
         super().__init__(world, x, y, 12, 12)
         self.world.enemy_list.append(self)
+        self.enemy_wave = enemy_wave
         self.health = 10
         self.image = image
 
@@ -23,11 +24,6 @@ class Enemy(Character):
     def died(self):
         super().died()
         self.world.score_display.score += 1
-        print("health")
-
-
-
-
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
