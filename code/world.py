@@ -15,16 +15,16 @@ class World:
     def __init__(self, app):
         self.app = app
         self.enemy_list = []
-        self.width = 640
-        self.height = 480
+        self.width = 400
+        self.height = 250
         self.player = Player(self, 225, 85, 15, 15)
         self.background = Background(self, pygame.image.load('assets/background_image.png'))
         self.door = Door(self,self.background, 0, 150)
         self.door_2 = Door(self,self.background,0,50)
         self.npc = None
-        self.protectable_item = ProtectableItem(self,app,150,150, 'assets/cake.png')
+        self.protectable_item = ProtectableItem(self,app,150,150, 'assets/chest.png')
         self.score_display = ScoreDisplay(self)
-        window_size = SCREEN_WIDTH, SCREEN_HEIGHT = 320,240
+        window_size = SCREEN_WIDTH, SCREEN_HEIGHT = self.width, self.height
         self.screen = pygame.display.set_mode(window_size,RESIZABLE)
         self.surface = pygame.Surface(self.screen.get_size())
         self.surface = self.surface.convert()

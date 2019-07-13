@@ -41,7 +41,7 @@ class Door():
 
     def check_door_touching(self, other_character):
         if self.is_touching(other_character):
-            self.world.change_location(pygame.image.load('assets/pixel_500x330.png'))
+            self.world.change_location(pygame.image.load('assets/floor.png'))
             self.world.player.x = 225
             self.world.player.y = 85
             return True

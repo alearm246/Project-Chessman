@@ -3,11 +3,12 @@ from character import Character
 
 
 class Enemy(Character):
-    def __init__(self, world, x, y, image):
+    def __init__(self, world,  x, y, image):
         super().__init__(world, x, y, 12, 12)
         self.world.enemy_list.append(self)
         self.health = 10
         self.image = image
+        self.death_observers = []
 
     def update(self):
         #self.update_random()
@@ -24,9 +25,13 @@ class Enemy(Character):
         super().died()
         self.world.score_display.score += 1
         print("health")
+        for observer in self.death_observers:
+            pass
 
 
 
+    def add_death_listener(self, to_notify):
+        self.death_observers.append(to_notify)
 
 
     def draw(self, surface):

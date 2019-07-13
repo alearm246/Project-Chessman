@@ -5,8 +5,8 @@ from world import World
 
 class App:
     def __init__(self):
-        self.width = 160
-        self.height = 120
+        self.width = 640
+        self.height = 480
         self.world = World(self)
         # Load images here after initializing, but before running
         ### PYGAME TODO:
